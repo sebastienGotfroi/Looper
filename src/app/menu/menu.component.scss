@@ -1,0 +1,32 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;  
+  }
+
+li {
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+div {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+#icon-metronome:hover {
+    background-image: url("../../assets/icons/metronome-hover.svg");
+}
+
+#icon-metronome {
+    background-image: url("../../assets/icons/metronome.svg");
+}
+
+#icon-looper:hover {
+    background-image: url("../../assets/icons/looper-hover.svg");
+}
+
+#icon-looper {
+    background-image: url("../../assets/icons/looper.svg");
+}

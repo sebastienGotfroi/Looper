@@ -1,0 +1,20 @@
+<div class="col-3">
+    <div class="margin">
+        <tempo label=Tempo [(value)]=tempo></tempo>
+    </div>
+
+    <div class="beat-per-bar margin">
+        <input-number-row label="Beats Per Bar" [(value)]="beatPerBar" (valueChange)="changeBeatPerBar()" [min]="1" [max]="20" [step]="1"></input-number-row>
+    </div>
+
+    <div class="value-of-beat margin">
+        <input-number-row label="Value Of Beat" [(value)]="valueOfBeat" [min]="4" [max]="12" [step]="4"></input-number-row>
+    </div>
+</div>
+<div [ngStyle]=beatsStyle class="margin">
+    <div *ngFor="let beat of beatPerBarTable; let index = index" [ngStyle]="beatStyle(beat)" class="box" (click)=changeBeat(index)>
+    </div>
+</div>
+<div class="playButton" (click)="playMetronome()">
+
+</div>

@@ -1,0 +1,22 @@
+.row {
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+.margin {
+    margin-top: 10px;
+}
+
+.margin-side {
+    margin: 0 5px;
+}
+
+.vertical-align {
+    vertical-align: super;
+    font-weight: bold; 
+    font-size: 1.8em;
+}
+
+.label {
+    font-size: 1.6em;
+}

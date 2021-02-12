@@ -1,0 +1,64 @@
+.relative {
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.label {
+    font-size: 1.6em;
+}
+
+.small {
+    width: 60px;
+}
+
+.input-text {
+    border-radius: 40%;
+    text-align: center;
+    background: #DFDBE0;
+    color: #8A6FA5;
+    font-weight: bold;
+    font-size: 1.2em;
+    border: 0;
+}
+
+.input-text:focus {
+    outline: none;
+}
+
+.tempo {
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
+
+input[type='range'] {
+    overflow: hidden;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    background-color: transparent;
+    height: 15px;
+    width: 100%;
+}
+
+input[type='range']::-webkit-slider-runnable-track  {
+    height: 8px;
+    background: #8A6FA5;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background: #DFDBE0;
+    margin-top: -3px;
+}
+
+
+input[type=range]:focus {
+    outline: none;
+}

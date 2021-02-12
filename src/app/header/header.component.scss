@@ -1,0 +1,40 @@
+header {
+    display: grid;
+    grid-template-columns: 85% auto;
+    background-color: #BAB4BD;
+    padding: 8px;
+}
+
+strong {
+    -webkit-app-region: drag;
+    color: #FCF4F4;
+}
+
+span {
+    color: #8A6FA5;
+}
+
+nav {
+    justify-self: right;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;  
+}
+
+li {
+    float: left;
+    margin-left: 10px;
+    cursor:pointer;
+}
+
+img {
+    width: 12px;
+    cursor: pointer;
+}
+
+img#min {
+    padding-bottom: 4px;
+}

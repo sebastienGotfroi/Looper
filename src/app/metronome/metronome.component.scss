@@ -1,0 +1,28 @@
+.col-3 {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.margin {
+    margin: 10px;
+    margin-top: 30px;
+} 
+
+.box {
+    width: 50px;
+    background-color: #E8DEEC;
+    cursor: pointer;
+}
+
+.playButton:hover {
+    background-image: url("../../assets/icons/play-hover.svg");
+}
+
+.playButton {
+    background-image: url("../../assets/icons/play.svg");
+    height: 60px;
+    width: 60px;
+    margin: auto;
+    margin-top: 100px;
+    cursor: pointer;
+}

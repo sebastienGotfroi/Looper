@@ -2,19 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import { AppRoutingModule } from './app-routing.module';
+import { ElectronService } from './electron.service';
 
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { HomeModule } from './home/home.module';
-import { DetailModule } from './detail/detail.module';
-
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { MenuComponent } from './menu/menu.component';
+import { MetronomeComponent } from './metronome/metronome.component';
+import { InputNumberRowComponent } from './input-number-row/input-number-row.component';
+import { TempoComponent } from './tempo/tempo.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -22,16 +23,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent, MenuComponent, MetronomeComponent, InputNumberRowComponent, TempoComponent],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    CoreModule,
-    SharedModule,
-    HomeModule,
-    DetailModule,
-    AppRoutingModule,
+    MatCheckboxModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -40,7 +37,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [],
+  providers: [ElectronService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

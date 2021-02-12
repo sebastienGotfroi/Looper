@@ -1,0 +1,5 @@
+<label class="label">{{label}}</label>
+<div class="relative">
+    <input class="small input-text" min=40 max=300 type="number" [(ngModel)]=value (input)="onValueChange()">
+</div>
+<input type="range" min=40 max=300 [(ngModel)]=value (input)="onValueChange()">
