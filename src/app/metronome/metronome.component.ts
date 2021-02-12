@@ -17,10 +17,9 @@ export class MetronomeComponent implements OnInit {
   audio1: HTMLAudioElement;
   audio2: HTMLAudioElement;
 
+
   ngOnInit() {
-    if(!this.metronome) {
-      this.metronome = new Metronome();
-    }
+    this.metronome = new Metronome();
     this.displayButton = 'playButton';
 
     this.audio1 = new Audio();
