@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FlashAnimation } from '../animation/flash';
+import { Beat} from '../metronome-configurator/beat';
+import { Metronome } from '../metronome-configurator/metronome';
 
 @Component({
   selector: 'app-metronome',
@@ -7,25 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MetronomeComponent implements OnInit {
 
-  tempo: number;
-  beatPerBar: number;
-  valueOfBeat: number;
-  beatPerBarTable: Array<number>;
-  beatsStyle: any;
+  metronome: Metronome;
   isPlaying: boolean;
+  displayButton: string;
+
   audio1: HTMLAudioElement;
   audio2: HTMLAudioElement;
 
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.tempo = 90;
-    this.beatPerBar = 4;
-    this.valueOfBeat = 4;
-    this.isPlaying = false;
-    this.initBeatPerBarTable();
-    this.changeBeatStyle();
+  ngOnInit() {
+    if(!this.metronome) {
+      this.metronome = new Metronome();
+    }
+    this.displayButton = 'playButton';
 
     this.audio1 = new Audio();
     this.audio1.src = '../../assets/audio/metronome1.wav';
@@ -35,59 +31,38 @@ export class MetronomeComponent implements OnInit {
     this.audio2.load();
   }
 
-  initBeatPerBarTable() {
-    this.beatPerBarTable = new Array();
-    for(let i = 0; i< this.beatPerBar; i++) {
-      this.beatPerBarTable.push(1);
-    }
-  }
-
-  changeBeatPerBar() {
-    if(this.beatPerBar > this.beatPerBarTable.length) {
-      this.beatPerBarTable.push(1);
-    } else {
-      this.beatPerBarTable.splice(this.beatPerBar, this.beatPerBar);
-    }
-
-    this.changeBeatStyle();
-  }
-
-  changeBeatStyle() {
-    this.beatsStyle = {display: 'grid',
-      'grid-template-columns': `repeat(${this.beatPerBar}, 1fr)`,
-      'justify-items': 'center',
-      'align-items': 'end',
-      'height': '150px'
-    };
-  }
-
-  beatStyle(number: number) {
-    if(number != 0) {
-      return {'height': `${50 *number}px`};
-    } 
-    return {'height': '50px',
-            'background-color': '#D4D4D4'};
-  }
-
-  changeBeat(index: number) {
-    this.beatPerBarTable[index] = ++this.beatPerBarTable[index]%3;
-  }
-
+  
   async playMetronome(){
+    let beat: Beat;
+
+    if(!this.isPlaying) {
+      this.displayButton = "stopButton";
+    } else {
+      this.displayButton = "playButton";
+    }
   
     this.isPlaying = !this.isPlaying;
-
     for(let i=0; this.isPlaying; i++) {
-      switch(this.beatPerBarTable[i%this.beatPerBar]){
-        case 0: await this.delay(60/this.tempo * 1000 * (4/this.valueOfBeat));
+      beat = this.metronome.beatsConfiguration[i%this.metronome.numberOfBar];
+
+      switch(beat.soundIndex){
+        case 0: await this.delay(60/this.metronome.tempo * 1000 * (4/this.metronome.valueOfBar));
           break;
         case 1 : this.audio1.play();
-          await this.delay(60/this.tempo*1000 * (4/this.valueOfBeat) - this.audio1.duration);
+          this.flash(beat)
+          await this.delay(60/this.metronome.tempo*1000 * (4/this.metronome.valueOfBar) - this.audio1.duration);
           break;
           case 2 : this.audio2.play();
-          await this.delay(60/this.tempo*1000 * (4/this.valueOfBeat)- this.audio2.duration);
+          this.flash(beat)
+          await this.delay(60/this.metronome.tempo*1000 * (4/this.metronome.valueOfBar)- this.audio2.duration);
       }
     }
+  }
+
+  private async flash(beat: Beat) {
+    beat.flashState = 'in';
+    await this.delay(100);
+    beat.flashState = 'out';
   }
 
   private delay(ms: number) {

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { ElectronService } from './electron.service';
 
@@ -16,6 +17,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MetronomeComponent } from './metronome/metronome.component';
 import { InputNumberRowComponent } from './input-number-row/input-number-row.component';
 import { TempoComponent } from './tempo/tempo.component';
+import { MetronomeConfiguratorComponent } from './metronome-configurator/metronome-configurator.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -23,9 +25,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, MenuComponent, MetronomeComponent, InputNumberRowComponent, TempoComponent],
+  declarations: [AppComponent, HeaderComponent, MenuComponent, MetronomeComponent, InputNumberRowComponent, TempoComponent, MetronomeConfiguratorComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     MatCheckboxModule,
