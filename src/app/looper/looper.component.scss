@@ -1,0 +1,60 @@
+.looper-configuration {
+    display:grid;
+    grid-template-columns: 25% 25% 25%;
+    margin: 10px;
+    margin-top: 60px;
+}
+
+.playButton:hover {
+    background-image: url("../../assets/icons/play-hover.svg");
+}
+
+.playButton {
+    background-image: url("../../assets/icons/play.svg");
+    height: 60px;
+    width: 60px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.stopButton:hover {
+    background-image: url("../../assets/icons/stop-hover.svg");
+}
+
+.stopButton {
+    background-image: url("../../assets/icons/stop.svg");
+    height: 60px;
+    width: 60px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.waitingRecord:hover, .waitingOneBar{
+    background-image: url("../../assets/icons/record-hover.svg");
+    height: 60px;
+    width: 60px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.waitingRecord {
+    background-image: url("../../assets/icons/record.svg");
+    height: 60px;
+    width: 60px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.recording {
+    background-image: url("../../assets/icons/record-recording.svg");
+    height: 60px;
+    width: 60px;
+    margin: auto;
+}
+
+.recordSave{
+    background-image: url("../../assets/icons/record-save.svg");
+    height: 60px;
+    width: 60px;
+    margin: auto;
+}

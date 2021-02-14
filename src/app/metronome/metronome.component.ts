@@ -12,7 +12,7 @@ export class MetronomeComponent implements OnInit {
 
   metronome: Metronome;
   isPlaying: boolean;
-  displayButton: string;
+  playButton: string;
 
   audio1: HTMLAudioElement;
   audio2: HTMLAudioElement;
@@ -20,7 +20,7 @@ export class MetronomeComponent implements OnInit {
 
   ngOnInit() {
     this.metronome = new Metronome();
-    this.displayButton = 'playButton';
+    this.playButton = 'playButton';
 
     this.audio1 = new Audio();
     this.audio1.src = '../../assets/audio/metronome1.wav';
@@ -35,9 +35,9 @@ export class MetronomeComponent implements OnInit {
     let beat: Beat;
 
     if(!this.isPlaying) {
-      this.displayButton = "stopButton";
+      this.playButton = "stopButton";
     } else {
-      this.displayButton = "playButton";
+      this.playButton = "playButton";
     }
   
     this.isPlaying = !this.isPlaying;
@@ -58,14 +58,15 @@ export class MetronomeComponent implements OnInit {
     }
   }
 
+  protected delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms));
+  }
+
   private async flash(beat: Beat) {
     beat.flashState = 'in';
     await this.delay(100);
     beat.flashState = 'out';
   }
 
-  private delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms));
-  }
 
 }

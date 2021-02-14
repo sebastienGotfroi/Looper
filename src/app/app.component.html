@@ -3,5 +3,6 @@
     <div class="col">
         <menu [(isDisplayMetronome)]="displayMetronome" class="menu"></menu>
         <app-metronome *ngIf="displayMetronome"></app-metronome>
+        <app-looper *ngIf="!displayMetronome"></app-looper>
     </div>
 </div>

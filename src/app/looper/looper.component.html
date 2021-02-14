@@ -1,0 +1,6 @@
+<metronome-configurator [(metronome)]="metronome"></metronome-configurator>
+<div class="looper-configuration">
+    <input-number-row label="Bar to record" [(value)]="barToRecord" [min]="1" [step]="1"></input-number-row>
+    <div [ngClass]="playButton" (click)="playMetronome()"></div>
+    <div [ngClass]="recordButton" (click)="record()"></div>
+</div>

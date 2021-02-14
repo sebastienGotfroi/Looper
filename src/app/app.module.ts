@@ -18,6 +18,7 @@ import { MetronomeComponent } from './metronome/metronome.component';
 import { InputNumberRowComponent } from './input-number-row/input-number-row.component';
 import { TempoComponent } from './tempo/tempo.component';
 import { MetronomeConfiguratorComponent } from './metronome-configurator/metronome-configurator.component';
+import { LooperComponent } from './looper/looper.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -25,7 +26,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, MenuComponent, MetronomeComponent, InputNumberRowComponent, TempoComponent, MetronomeConfiguratorComponent],
+  declarations: [AppComponent, HeaderComponent, MenuComponent, MetronomeComponent, InputNumberRowComponent, TempoComponent, MetronomeConfiguratorComponent, LooperComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
