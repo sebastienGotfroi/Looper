@@ -1,6 +1,6 @@
 <nav class="row">
     <ul>
-        <li><div id="icon-metronome"></div></li>
-        <li><div id="icon-looper"></div></li>
+        <li (click)="displayMetronome(true)"><div id="icon-metronome" [ngClass]="isDisplayMetronome ? 'selected' : ''"></div></li>
+        <li (click)="displayMetronome(false)"><div id="icon-looper" [ngClass]="!isDisplayMetronome ? 'selected' : ''"></div></li>
     </ul>
 </nav>

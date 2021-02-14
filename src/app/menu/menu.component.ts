@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'menu',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  @Input() isDisplayMetronome: boolean;
+  @Output() isDisplayMetronomeChange = new EventEmitter<boolean>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  displayMetronome(displayMetronome: boolean) {
+    this.isDisplayMetronomeChange.emit(displayMetronome);
+  }
 }

@@ -15,7 +15,7 @@ div {
     cursor: pointer;
 }
 
-#icon-metronome:hover {
+#icon-metronome:hover, #icon-metronome.selected {
     background-image: url("../../assets/icons/metronome-hover.svg");
 }
 
@@ -23,7 +23,7 @@ div {
     background-image: url("../../assets/icons/metronome.svg");
 }
 
-#icon-looper:hover {
+#icon-looper:hover, #icon-looper.selected {
     background-image: url("../../assets/icons/looper-hover.svg");
 }
 
