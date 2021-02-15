@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgAudioRecorderService, OutputFormat } from 'ng-audio-recorder';
 import { Metronome } from '../metronome-configurator/metronome';
+import { Beat } from '../metronome-configurator/beat';
 import { MetronomeComponent } from '../metronome/metronome.component';
 
 @Component({
@@ -13,7 +15,9 @@ export class LooperComponent extends MetronomeComponent implements OnInit, OnDes
   recordButton: string;
   isRecording: boolean;
 
-  constructor() { 
+  audioRecording: HTMLAudioElement;
+
+  constructor(private audioRecorderService: NgAudioRecorderService) { 
     super();
     this.recordButton = "waitingRecord";
   }
@@ -21,6 +25,8 @@ export class LooperComponent extends MetronomeComponent implements OnInit, OnDes
   ngOnInit(): void {
     super.ngOnInit();
     this.metronome = new Metronome();
+    this.audioRecording = new Audio();
+    this.audioRecording.loop = true;
     this.barToRecord = 1;
   }
 
@@ -28,17 +34,48 @@ export class LooperComponent extends MetronomeComponent implements OnInit, OnDes
     this.isPlaying = false;
   }
 
-  async record() {
+  async playMetronome() {
+    let beat: Beat;
+    let numberOfBarRecorded: number = this.metronome.numberOfBar * this.barToRecord;
+
+    if(!this.isPlaying) {
+      if(!this.isRecording) {
+        this.audioRecording.play();
+      }
+    } else {
+      this.audioRecording.pause();
+      this.audioRecording.currentTime = 0;
+      this.playButton = "playButton";
+    }
+  
+    super.playMetronome();
+  }
+
+  async onRecord() {
     if(!this.isRecording) {
-      this.recordButton = "waitingOneBar";
-      this.isRecording = true;
-      this.playMetronome();
-      await this.delay(60/this.metronome.tempo*1000 * (4/this.metronome.valueOfBar) * this.metronome.numberOfBar);
-      this.recordButton = "recording";
-      await this.delay(60/this.metronome.tempo*1000 * (4/this.metronome.valueOfBar) * this.metronome.numberOfBar * this.barToRecord);
-      this.recordButton = "recordSave";
-      this.isRecording = false;
+      this.record();
     }
   }
 
+  private async record() {
+    this.recordButton = "waitingOneBar";
+    this.isRecording = true;
+    this.playMetronome();
+
+    await this.delay(60/this.metronome.tempo*1000 * (4/this.metronome.valueOfBar) * this.metronome.numberOfBar * 2);
+
+    this.audioRecorderService.startRecording();
+    this.recordButton = "recording";
+
+    await this.delay(60/this.metronome.tempo*1000 * (4/this.metronome.valueOfBar) * this.metronome.numberOfBar * this.barToRecord);
+    this.isPlaying = false;
+    this.audioRecorderService.stopRecording(OutputFormat.WEBM_BLOB_URL).then((output: string) => {
+      this.audioRecording.src = output;
+      this.audioRecording.play();
+      this.isPlaying = false;
+    })
+    this.recordButton = "recordSave";
+    this.isRecording = false;
+  }
 }
+60

@@ -49,20 +49,20 @@ export class MetronomeComponent implements OnInit {
           break;
         case 1 : this.audio1.play();
           this.flash(beat)
-          await this.delay(60/this.metronome.tempo*1000 * (4/this.metronome.valueOfBar) - this.audio1.duration);
+          await this.delay(60/this.metronome.tempo*1000 * (4/this.metronome.valueOfBar));
           break;
           case 2 : this.audio2.play();
           this.flash(beat)
-          await this.delay(60/this.metronome.tempo*1000 * (4/this.metronome.valueOfBar)- this.audio2.duration);
+          await this.delay(60/this.metronome.tempo*1000 * (4/this.metronome.valueOfBar));
       }
     }
   }
 
-  protected delay(ms: number) {
+  delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms));
   }
 
-  private async flash(beat: Beat) {
+  async flash(beat: Beat) {
     beat.flashState = 'in';
     await this.delay(100);
     beat.flashState = 'out';
